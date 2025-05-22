@@ -41,4 +41,5 @@ Settings are saved locally and instantly applied — no need to edit code. Choos
 ## 📄 License
 
 MIT © [S4N-T0S](https://github.com/S4N-T0S)
+
 *Not affiliated with the Just Eat brand or company.*
