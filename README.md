@@ -26,7 +26,7 @@ A customizable userscript to **improve your browsing experience** on [Just Eat U
 1. Install a userscript manager like [Violentmonkey](https://violentmonkey.github.io/)
 2. Click to install the script:
 
-   👉 [Install the Just Eat Userscript](https://github.com/S4N-T0S/JustEat-userscript/raw/main/JustEat-userscript.js)
+   👉 [Install the Just Eat Userscript](https://github.com/S4N-T0S/JustEat-userscript/raw/main/JustEat.user.js)
 
 3. Visit [just-eat.co.uk](https://www.just-eat.co.uk), click the ⚙️ icon at the bottom-left, and customize your preferences.
 
@@ -41,3 +41,4 @@ Settings are saved locally and instantly applied — no need to edit code. Choos
 ## 📄 License
 
 MIT © [S4N-T0S](https://github.com/S4N-T0S)
+*Not affiliated with the Just Eat brand or company.*

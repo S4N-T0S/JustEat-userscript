@@ -7,8 +7,8 @@
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @license      MIT
-// @updateURL    https://github.com/S4N-T0S/JustEat-userscript/main/JustEat-userscript.js
-// @downloadURL  https://github.com/S4N-T0S/JustEat-userscript/main/JustEat-userscript.js
+// @updateURL    https://github.com/S4N-T0S/JustEat-userscript/JustEat.user.js
+// @downloadURL  https://github.com/S4N-T0S/JustEat-userscript/JustEat.user.js
 // @homepageURL  https://github.com/S4N-T0S/JustEat-userscript
 // @supportURL   https://github.com/S4N-T0S/JustEat-userscript/issues
 // ==/UserScript==
