@@ -44,7 +44,6 @@
                     z-index: 9999;
                     font-family: sans-serif;
                     display: none;
-                    display: flex;
                     flex-direction: column;
                 }
                 #je-options-header {
@@ -201,7 +200,7 @@
         const optionsMenu = document.getElementById('je-options-menu');
 
         settingsIcon.addEventListener('click', () => {
-            const isHidden = optionsMenu.style.display === 'none';
+            const isHidden = getComputedStyle(optionsMenu).display === 'none';
             optionsMenu.style.display = isHidden ? 'flex' : 'none';
         });
 
@@ -223,8 +222,6 @@
             window.location.reload();
         });
     }
-
-
 
     // Add dark mode CSS
     const darkModeCSS = `
