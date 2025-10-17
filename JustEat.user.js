@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Just Eat Custom Userscript (UK)
 // @namespace    https://github.com/S4N-T0S/JustEat-userscript
-// @version      1.0
+// @version      1.1
 // @description  Customizable Just Eat filter with dark mode option
 // @match        https://www.just-eat.co.uk/*
 // @grant        GM_setValue
@@ -228,7 +228,7 @@
         html {
             filter: invert(1) hue-rotate(180deg);
         }
-        img, svg, iframe {
+        img, svg, iframe, video {
             filter: invert(1) hue-rotate(180deg);
         }
         div[class*="image-tile-style_image-wrapper"] {
@@ -248,7 +248,7 @@
         }
 
         // Fix images loaded after DOM updates
-        const media = document.querySelectorAll('img, svg, iframe');
+        const media = document.querySelectorAll('img, svg, iframe, video');
         media.forEach(el => {
             el.style.filter = 'invert(1) hue-rotate(180deg) !important';
         });
@@ -264,9 +264,11 @@
 
     // Check if a restaurant is new
     function isNewRestaurant(card) {
+        // Updated selector for the "New" tag, keeping old ones for fallback
         return (
-            card.querySelector('div[data-qa="tag-new"]') ||
-            card.querySelector("div[class*='restaurant-card_new-tag__']")
+            card.querySelector('pie-tag[data-qa="tag-new"]') ||
+            card.querySelector("div[class*='restaurant-card_new-tag__']") ||
+            card.querySelector('div[data-qa="tag-new"]')
         );
     }
 
@@ -291,10 +293,11 @@
             }
 
             const ratingDiv = anchor.querySelector("div[class*='restaurant-ratings_rating']");
-            const votesDiv = anchor.querySelector("div[class*='restaurant-ratings_votes']");
+            // Updated selector for reviews, which are now in a <span>
+            const votesSpan = anchor.querySelector("span[class*='restaurant-ratings_votes']");
 
-            // If ratingDiv or votesDiv doesn't exist, probably has no reviews
-            if (!ratingDiv || !votesDiv) {
+            // If ratingDiv or votesSpan doesn't exist, it likely has no reviews
+            if (!ratingDiv || !votesSpan) {
                 if (config.filterNoReviews) {
                     // Apply the filter to restaurants with no reviews
                     if (config.hideMode) {
@@ -308,8 +311,9 @@
                 return;
             }
 
+            // parseFloat correctly extracts the leading number from a string like "5 Excellent"
             const rating = parseFloat(ratingDiv.textContent.trim());
-            const reviews = parseNumber(votesDiv.textContent);
+            const reviews = parseNumber(votesSpan.textContent);
 
             if (isNaN(rating) || isNaN(reviews)) return;
 
@@ -348,7 +352,7 @@
     // Initialize the options menu and apply settings
     createOptionsMenu();
 
-    // Repeat every 1s (this could be optimized further)
+    // Repeat every 1s
     setInterval(() => {
         if (isTabFocused()) {
             reapplyFixes();
